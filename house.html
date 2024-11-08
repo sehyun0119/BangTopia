@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>부동산 매물 상세 정보</title>
+    <style>
+        /* 기본 스타일 설정 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* 메인 컨테이너 스타일 */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 주요 이미지 */
+        .main-image {
+            width: 50%; /* 크기 조정 */
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* 작은 이미지 컨테이너 */
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .thumbnail {
+            width: 30%;
+            border-radius: 5px;
+        }
+
+        /* 제목 스타일 */
+        .title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* 가격 및 특징 */
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .features {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        /* AI 추천 및 더보기 버튼 */
+        .ai-recommendation {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #A268E3;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .more-button {
+            font-size: 0.8rem;
+            padding: 5px 10px;
+            background-color: #A268E3;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        /* 추천 매물 카드 */
+        .recommendation-card {
+            background-color: #e9e5f7;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .recommendation-image {
+            width: 50%; /* 크기 조정 */
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .recommendation-title {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .recommendation-details {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* 중개사 정보 */
+        .agent-info {
+            display: flex;
+            align-items: center;
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .agent-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .agent-details {
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        /* 하단 문의 버튼 */
+        .inquiry-button {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            background-color: #C669E5;
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 메인 이미지 -->
+        <img src="image1.png" alt="Main Property Image" class="main-image">
+
+        <!-- 작은 이미지 썸네일 -->
+        <div class="thumbnail-container">
+            <img src="image2.png" alt="Thumbnail 1" class="thumbnail">
+            <img src="image3.png" alt="Thumbnail 2" class="thumbnail">
+        </div>
+
+        <!-- 제목과 서브타이틀 -->
+        <div class="title">공덕역 오피스텔 1103호</div>
+        <div class="subtitle">▪ 교수님도 거주하는 오피스텔 맛집 ▪ 좋은 채광, 주차 가능, 조용한 동네</div>
+
+        <!-- 가격 정보 -->
+        <div class="price">월세 500 / 45 관리비 별도</div>
+
+        <!-- 특징 -->
+        <div class="features">
+            Features<br>
+            즉시 입주 가능<br>
+            반려동물 가능<br>
+            세대당 1.1대 주차 가능<br>
+            월세 협의 가능<br>
+            전월세 협의 가능
+        </div>
+
+        <!-- AI 추천 매물과 더보기 버튼 -->
+        <div class="ai-recommendation">
+            <span>하이브리드 필터링을 이용한 맞춤 매물 추천</span>
+            <a href="more.html" class="more-button">더보기</a>
+        </div>
+
+        <!-- 추천 매물 카드 -->
+        <div class="recommendation-card">
+            <img src="image5.png" alt="Recommendation Image" class="recommendation-image">
+            <div class="recommendation-title">공덕 빌라 405호</div>
+            <div class="recommendation-details">학교 앞 · 맛집 골목 · 대학생 추천</div>
+            <div class="price">1000 / 50</div>
+        </div>
+
+        <!-- 중개사 정보 -->
+        <div class="agent-info">
+            <img src="JSH.png" alt="Agent Image" class="agent-image">
+            <div class="agent-details">
+                방토피아 공인중개사무소 (대표: 전세현)<br>
+                010 - 1234 - 5678<br>
+                "친절하고 성실한 중개로 모시겠습니다"
+            </div>
+        </div>
+
+        <!-- 하단 문의 버튼 -->
+        <a href="contact.html" class="inquiry-button">방,콕으로 문의하기</a>
+    </div>
+</body>
+</html>
