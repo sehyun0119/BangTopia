@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>부동산 매물 지도</title>
+    <style>
+        /* 스타일 설정 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* 전체 컨테이너 */
+        .app-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            padding-top: 60px; /* 검색창 높이만큼 패딩 추가 */
+            box-sizing: border-box;
+        }
+
+        /* 검색창 컨테이너 */
+        .search-container-wrapper {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 10;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .search-input {
+            width: 80%;
+            padding: 8px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+            padding-left: 15px;
+        }
+
+        .search-icon {
+            margin-left: -30px;
+            cursor: pointer;
+        }
+
+        /* 지도 컨테이너 */
+        .map-container {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%; /* 전체 높이로 확장 */
+            background-image: url('convenience.png'); /* 임시 지도 이미지 */
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .score-marker {
+            position: absolute;
+            background-color: rgba(128, 0, 128, 0.8);
+            color: white;
+            font-size: 0.9rem;
+            border-radius: 50%;
+            padding: 10px;
+            text-align: center;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        /* 매물 점수 위치 설정 */
+        .marker-1 { top: 40%; left: 45%; }
+        .marker-2 { top: 30%; left: 50%; }
+        .marker-3 { top: 60%; left: 40%; }
+        .marker-4 { top: 55%; left: 35%; }
+        .marker-5 { top: 70%; left: 50%; }
+        .marker-6 { top: 65%; left: 60%; }
+        .marker-7 { top: 50%; left: 70%; }
+        .marker-8 { top: 20%; left: 30%; }
+        .marker-9 { top: 25%; left: 40%; }
+        .marker-10 { top: 45%; left: 60%; }
+        .marker-11 { top: 75%; left: 55%; }
+        .marker-12 { top: 35%; left: 25%; }
+
+        /* 오른쪽 상단 지수 버튼 스타일 */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: absolute;
+            top: 70px; /* 검색창 아래에 위치하도록 조정 */
+            right: 20px;
+            z-index: 10;
+        }
+
+        .button-container a {
+            text-decoration: none;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-align: center;
+            width: 100px;
+        }
+
+        .safety-button {
+            background-color: orangered; /* 빨간색 */
+        }
+
+        .convenience-button {
+            background-color: #FFD700; /* 노란색 */
+        }
+
+        .traffic-button {
+            background-color: forestgreen; /* 초록색 */
+        }
+
+        /* 하단 중앙 맞춤매물 버튼 스타일 */
+        .custom-match-button {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #C669E5; /* 보라색 */
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-align: center;
+            text-decoration: none;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <!-- 검색창을 감싼 컨테이너 -->
+    <div class="search-container-wrapper">
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="원하는 지역 검색">
+            <span class="search-icon">🔍</span>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- 지도 영역 -->
+        <div class="map-container">
+            <!-- 매물 점수 마커 -->
+            <div class="score-marker marker-1">86점</div>
+            <div class="score-marker marker-2">92점</div>
+            <div class="score-marker marker-3">75점</div>
+            <div class="score-marker marker-4">95점</div>
+            <div class="score-marker marker-5">82점</div>
+            <div class="score-marker marker-6">97점</div>
+            <div class="score-marker marker-7">88점</div>
+            <div class="score-marker marker-8">90점</div>
+            <div class="score-marker marker-9">78점</div>
+            <div class="score-marker marker-10">83점</div>
+            <div class="score-marker marker-11">91점</div>
+            <div class="score-marker marker-12">76점</div>
+        </div>
+
+        <!-- 오른쪽 상단 지수 버튼 -->
+        <div class="button-container">
+            <a href="safety.html" class="safety-button">안전지수</a>
+            <a href="convenience.html" class="convenience-button">편의지수</a>
+            <a href="traffic.html" class="traffic-button">교통지수</a>
+        </div>
+
+        <!-- 하단 중앙 맞춤매물 확인하기 버튼 -->
+        <a href="custom-match.html" class="custom-match-button">맞춤매물 확인하기</a>
+    </div>
+</body>
+</html>

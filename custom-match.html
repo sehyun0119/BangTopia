@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>부동산 매물 리스트</title>
+    <style>
+        /* 기본 설정 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .search-bar input {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+            font-size: 1rem;
+            padding-left: 15px;
+        }
+
+        .search-bar button {
+            background-color: #C669E5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+            background-color: #f5f5f5;
+        }
+
+.filter-button {
+    padding: 8px 16px;
+    border-radius: 20px;
+    background-color: #C669E5;
+    color: white;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s; /* 부드러운 색 전환 효과 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+.filter-button:hover {
+    background-color: #A855D5; /* hover 시 더 짙은 보라색 */
+}
+
+
+        .listing-container {
+            width: 100%;
+            max-width: 600px;
+            padding: 0 10px;
+        }
+
+        .listing-item {
+            display: flex;
+            padding: 15px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: inherit; /* 링크 텍스트가 기본 색상을 유지하도록 설정 */
+        }
+
+        .listing-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .listing-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .listing-title {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .listing-subtitle {
+            font-size: 0.9rem;
+            color: #555555;
+            margin: 5px 0;
+        }
+
+        .listing-desc {
+            font-size: 0.8rem;
+            color: #777777;
+        }
+
+        .heart-icon {
+            color: #888; /* 기본 회색 */
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .heart-icon.active {
+            color: #C669E5; /* 보라색 */
+        }
+
+        .score {
+            font-size: 0.9rem;
+            color: #C669E5;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 600px) {
+            .search-bar input, .search-bar button {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+
+            .filter-button {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            .listing-item img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .listing-title {
+                font-size: 0.9rem;
+            }
+
+            .listing-subtitle {
+                font-size: 0.8rem;
+            }
+
+            .listing-desc {
+                font-size: 0.7rem;
+            }
+
+            .heart-icon {
+                font-size: 1.3rem;
+            }
+
+            .bottom-menu-item {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 검색창 -->
+    <div class="search-bar">
+        <input type="text" placeholder="원하는 지역 검색">
+               <span class="search-icon">🔍</span>
+
+    </div>
+
+    <!-- 필터 버튼들 -->
+<div class="filter-container">
+    <a href="custom-match.html" class="filter-button">모든 매물 확인하기</a>
+    <a href="jeon.html" class="filter-button">전세</a>
+    <a href="rent.html" class="filter-button">월세</a>
+    <a href="high-price.html" class="filter-button">높은 가격순</a>
+    <a href="low-price.html" class="filter-button">낮은 가격순</a>
+</div>
+
+
+<div class="listing-container">
+    <!-- 매물 항목 1 -->
+<a href="house.html" class="listing-item">
+        <img src="house1.png" alt="House Image">
+        <div class="listing-info">
+            <div class="listing-title">월세 - / 15 <span class="score">85점</span></div>
+            <div class="listing-subtitle">마운틴 스윗 하우스</div>
+            <div class="listing-desc">산이 곧 집, 관리비 X, 전기 수도 X<br>"베어그릴스가 탐내는 집"</div>
+        </div>
+        <div class="heart-icon" onclick="toggleHeart(this)">♡</div>
+    </a>
+
+    <!-- 매물 항목 2 -->
+    <a href="house.html" class="listing-item">
+        <img src="house2.png" alt="House Image">
+        <div class="listing-info">
+            <div class="listing-title">전세 6000 <span class="score">80점</span></div>
+            <div class="listing-subtitle">와르르빌라 102호</div>
+            <div class="listing-desc">7.4평, 관리비 4만, 수도 가스 별도<br>"레트로 감성, 친환경 생활"</div>
+        </div>
+        <div class="heart-icon" onclick="toggleHeart(this)">♡</div>
+    </a>
+
+    <!-- 매물 항목 3 -->
+    <a href="house.html" class="listing-item">
+        <img src="house3.png" alt="House Image">
+        <div class="listing-info">
+            <div class="listing-title">월세 500 / 45 <span class="score">78점</span></div>
+            <div class="listing-subtitle">힐링 빌리지</div>
+            <div class="listing-desc">초록에 둘러싸인 휴식 공간, 공기 맑음<br>"자연과 하나 되는 집"</div>
+        </div>
+        <div class="heart-icon" onclick="toggleHeart(this)">♡</div>
+    </a>
+
+    <!-- 매물 항목 4 -->
+    <a href="house.html" class="listing-item">
+        <img src="house4.png" alt="House Image">
+        <div class="listing-info">
+            <div class="listing-title">전세 1억 <span class="score">90점</span></div>
+            <div class="listing-subtitle">도심 속 휴양지</div>
+            <div class="listing-desc">도시에서 찾은 평온함, 관리비 5만<br>"현대적 감성, 편리한 생활"</div>
+        </div>
+        <div class="heart-icon" onclick="toggleHeart(this)">♡</div>
+    </a>
+
+    <!-- 매물 항목 5 -->
+    <a href="house.html" class="listing-item">
+        <img src="house5.png" alt="House Image">
+        <div class="listing-info">
+            <div class="listing-title">월세 800 / 70 <span class="score">88점</span></div>
+            <div class="listing-subtitle">럭셔리 펜트하우스</div>
+            <div class="listing-desc">넓은 공간과 고급스러운 인테리어<br>"편안함과 우아함을 동시에"</div>
+        </div>
+        <div class="heart-icon" onclick="toggleHeart(this)">♡</div>
+    </a>
+
+    <!-- 매물 항목 6 -->
+    <a href="house.html" class="listing-item">
+        <img src="house6.png" alt="House Image">
+        <div class="listing-info">
+            <div class="listing-title">월세 400 / 30 <span class="score">82점</span></div>
+            <div class="listing-subtitle">아늑한 도시 아파트</div>
+            <div class="listing-desc">작지만 아늑한 공간, 관리비 저렴<br>"초보 독립자를 위한 공간"</div>
+        </div>
+        <div class="heart-icon" onclick="toggleHeart(this)">♡</div>
+    </a>
+</div>
+
+
+    <script>
+        // 하트 클릭 시 채워진 하트로 토글하는 함수
+        // 하트 클릭 시 색상 변경 함수
+        function toggleHeart(element) {
+            element.classList.toggle("active");
+        }
+    </script>
+
+</body>
+</html>
+
